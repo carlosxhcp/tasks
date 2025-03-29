@@ -67,10 +67,10 @@ def add_item_tarefa(tarefa, concluida):
     frame_botoes = ctk.CTkFrame(item)
     frame_botoes.pack(side="right", padx=5)
 
-    btn_check = ctk.CTkButton(frame_botoes, text="", image=icon_concluido, fg_color="#2B2B2B",width=25, command=lambda: marcar_concluido(texto))
+    btn_check = ctk.CTkButton(frame_botoes, text="", image=icon_concluido, fg_color="#2B2B2B", hover_color="#3D3D3D", width=25, command=lambda: marcar_concluido(texto))
     btn_check.pack(side="left", padx=2)
 
-    btn_remover = ctk.CTkButton( frame_botoes, text="", image=icon_deletar, width=25, fg_color="#2B2B2B", command=lambda: remover_tarefa(item))
+    btn_remover = ctk.CTkButton( frame_botoes, text="", image=icon_deletar, width=25, fg_color="#2B2B2B", hover_color="#3D3D3D", command=lambda: remover_tarefa(item))
     btn_remover.pack(side="left", padx=2)
 
 # Função para remover tarefa
@@ -82,9 +82,9 @@ def remover_tarefa(item):
 def marcar_concluido(label):
     texto = label.cget("text")
     if "✔" in texto:
-        label.configure(text=texto.replace(" ✔", ""))  # Remove o checkmark
+        label.configure(text=texto.replace(" ✔", ""))
     else:
-        label.configure(text=texto + " ✔")  # Adiciona o checkmark
+        label.configure(text=texto + " ✔")
     salvar_tarefas()
 
 # Campo de entrada e botão adicionar
