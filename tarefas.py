@@ -1,14 +1,19 @@
 import customtkinter as ctk
 import json
 import os
+import requests
+from io import BytesIO
 from PIL import Image
 
 
-# Abrindo as imagens de deleter e concluir tarefa, e convertendo elas para o formato do CTK
-img_deletar = Image.open("deletar.png")
-icon_deletar = ctk.CTkImage(light_image=img_deletar,dark_image=img_deletar)
-img_concluido = Image.open("concluido.png")
-icon_concluido = ctk.CTkImage(light_image=img_concluido, dark_image=img_concluido)
+# Parte que utilizei uma função para carregar as imagens externamente
+URL_DELETAR = "https://i.ibb.co/LBwY8x1/deletar.png"
+URL_CONCLUIDO = "https://i.ibb.co/Zz4z5hzD/concluido.png"
+def carregar_img(url):
+    return Image.open(BytesIO(requests.get(url).content))
+icon_deletar = ctk.CTkImage(dark_image=carregar_img(URL_DELETAR))
+icon_concluido = ctk.CTkImage(dark_image=carregar_img(URL_CONCLUIDO))
+
 
 # Abrindo o arquivo que armazena as tarefas
 TAREFAS_JSON = "tarefas.json"
